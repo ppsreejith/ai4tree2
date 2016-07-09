@@ -30,20 +30,26 @@ app.use(express.static('public'));
  *
  */
 
+var conf = {
+    "appSecret": "1714647058788692",
+    "pageAccessToken": "EAAYXdmDasVQBABQeRlrAX8doDlGq2WKqWvBoK6HIBGrJGfutPnN2fq5inqsg90keZCrIgucZBtX0eXtQ7ZBL7vzMwe4gPubURNc88rT6bAr9Qg9ZCLou8OgQI1TZBUIcmjAu1ci0QB6P3fQHFeZCDz1afsf1OcZC5Hx4CQJ1WZCuKAZDZD",
+    "validationToken": "something_in_the_way"
+};
+
 // App Secret can be retrieved from the App Dashboard
 const APP_SECRET = (process.env.MESSENGER_APP_SECRET) ? 
   process.env.MESSENGER_APP_SECRET :
-  config.get('appSecret');
+  conf.appSecret;
 
 // Arbitrary value used to validate a webhook
 const VALIDATION_TOKEN = (process.env.MESSENGER_VALIDATION_TOKEN) ?
   (process.env.MESSENGER_VALIDATION_TOKEN) :
-  config.get('validationToken');
+  conf.validationToken;
 
 // Generate a page access token for your page from the App Dashboard
 const PAGE_ACCESS_TOKEN = (process.env.MESSENGER_PAGE_ACCESS_TOKEN) ?
   (process.env.MESSENGER_PAGE_ACCESS_TOKEN) :
-  config.get('pageAccessToken');
+  conf.pageAccessToken;
 
 if (!(APP_SECRET && VALIDATION_TOKEN && PAGE_ACCESS_TOKEN)) {
   console.error("Missing config values");
